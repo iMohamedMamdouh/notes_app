@@ -13,6 +13,8 @@ class NotesViewBody extends StatelessWidget {
         children: [
           SizedBox(height: 44.0),
           CustomAppBar(
+            icon: Icons.search,
+            icon2: Icons.info_outline,
             title: 'Notes',
           ),
           SizedBox(height: 8.0),
