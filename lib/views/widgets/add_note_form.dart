@@ -55,7 +55,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
                     var noteModel = NoteModel(
                         title: title!,
-                        subtitle: subtitle!,
+                        content: subtitle!,
                         date: formattedDate,
                         color: Colors.yellow.value);
 
