@@ -6,6 +6,7 @@ import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/widgets/colors_list_view.dart';
 import 'package:notes_app/views/widgets/custom_button.dart';
 import 'package:notes_app/views/widgets/custom_textfield.dart';
+import 'package:uuid/uuid.dart'; // Import uuid package
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -22,10 +23,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   String? title, subtitle;
+
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey, // Ensure the formKey is assigned to the Form widget
+      key: formKey,
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
@@ -56,10 +58,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     String formattedDate = formatter.format(now);
 
                     var noteModel = NoteModel(
-                        title: title!,
-                        content: subtitle!,
-                        date: formattedDate,
-                        color: Colors.yellow.value);
+                      id: const Uuid().v4(), // Generate a unique ID
+                      title: title!,
+                      content: subtitle!,
+                      date: formattedDate,
+                      color: Colors.blue.value,
+                    );
 
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                   } else {

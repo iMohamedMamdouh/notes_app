@@ -18,4 +18,11 @@ class ReadNotesCubit extends Cubit<ReadNotesState> {
 
     emit(ReadNotesSuccess());
   }
+
+  void deleteNote(NoteModel note) {
+    // Safely delete note and update state
+    note.delete();
+    readNotes?.remove(note);
+    emit(ReadNotesUpdated(readNotes: readNotes ?? []));
+  }
 }

@@ -8,15 +8,16 @@ class CustomIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 45,
-        width: 45,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: const Color(0xFF3B3B3B),
-        ),
-        child: IconButton(
-          onPressed: onPressed,
-          icon: Icon(icon, color: Colors.white),
-        ));
+      height: 45,
+      width: 45,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: const Color(0xFF3B3B3B),
+      ),
+      child: IconButton(
+        onPressed: onPressed,
+        icon: Icon(icon, color: Colors.white),
+      ),
+    );
   }
 }

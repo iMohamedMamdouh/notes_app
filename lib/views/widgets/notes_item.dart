@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/cubits/read_notes_cubit/read_notes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
 class NotesItem extends StatelessWidget {
-  const NotesItem({super.key, required this.note});
+  const NotesItem({super.key, required this.note, required this.onDelete});
 
   final NoteModel note;
+  final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        final updatedNote = await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => EditNoteView(
-              note: note,
-            ),
+            builder: (context) => EditNoteView(note: note),
           ),
         );
+
+        if (updatedNote != null) {
+          // Handle the updated note (e.g., refresh the list)
+          // This depends on how you manage state in your app
+        }
       },
       child: Container(
         decoration: BoxDecoration(
@@ -48,20 +50,10 @@ class NotesItem extends StatelessWidget {
                     maxLines: 2,
                     note.content,
                     style: TextStyle(
+                      fontWeight: FontWeight.w600,
                       fontSize: 16,
                       color: Colors.black.withOpacity(0.5),
                     ),
-                  ),
-                ),
-                trailing: IconButton(
-                  onPressed: () {
-                    note.delete();
-                    BlocProvider.of<ReadNotesCubit>(context).featchAllNotes();
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Colors.red,
-                    size: 48,
                   ),
                 ),
               ),
