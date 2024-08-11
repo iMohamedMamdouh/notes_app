@@ -19,6 +19,8 @@ class NotesListView extends StatelessWidget {
           return const EmptyView();
         }
 
+        readNotes = readNotes.reversed.toList();
+
         return ListView.builder(
           itemCount: readNotes.length,
           physics: const BouncingScrollPhysics(),
